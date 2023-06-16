@@ -97,6 +97,10 @@ resource "aws_autoscaling_group" "this" {
     "WarmPoolWarmedCapacity",
   ]
 
+  suspended_processes = [
+    "AZRebalance",
+  ]
+
   # Health check and target groups dependent on whether we're a server or not (identified via rke2_url)
   health_check_type         = var.health_check_type
   wait_for_capacity_timeout = var.wait_for_capacity_timeout
