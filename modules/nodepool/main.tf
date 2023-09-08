@@ -150,6 +150,8 @@ resource "aws_autoscaling_group" "this" {
   }
 
   lifecycle {
-    ignore_changes = [load_balancers, target_group_arns]
+    # ref: https://stackoverflow.com/questions/66717333/what-happens-to-changes-for-autoscaling-instances-when-terraform-changes-are-mad
+    # ref: https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-capacity-limits.html
+    ignore_changes = [load_balancers, target_group_arns, desired_capacity]
   }
 }
